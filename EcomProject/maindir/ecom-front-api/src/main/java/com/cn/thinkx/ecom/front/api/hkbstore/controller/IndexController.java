@@ -111,7 +111,7 @@ public class IndexController {
 			mv.addObject("settingBannerList", settingBannerList);
 			mv.addObject("blackInf", blackInf);
 		} catch (Exception e) {
-			logger.error(" ## 会员【[{}]】跳转汇生活商城主页出错 ", memberId, e);
+			logger.error(" ## 会员【[{}]】跳转知了商城主页出错 ", memberId, e);
 		}
 		return mv;
 	}

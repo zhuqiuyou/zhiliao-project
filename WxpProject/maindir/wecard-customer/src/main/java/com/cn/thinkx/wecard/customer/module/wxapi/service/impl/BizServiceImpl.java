@@ -151,8 +151,9 @@ public class BizServiceImpl implements BizService {
 			UserInf user = userInfService.getUserInfByOpenId(msgRequest.getFromUserName());// TODO 放在缓存中
 			if (user == null) {
 				// 首次注册欢迎语 图文消息
-				List<MsgNews> newsList = msgNewsDao.getMsgNewsBySubscribe();// TODO 放在缓存中
-				return MsgXmlUtil.newsToXml(WxMessageBuilder.getMsgResponseNews(msgRequest, newsList));
+//				List<MsgNews> newsList = msgNewsDao.getMsgNewsBySubscribe();// TODO 放在缓存中
+				text = msgBaseDao.getMsgTextBySubscribe();
+				return MsgXmlUtil.textToXml(WxMessageBuilder.getMsgResponseText(msgRequest, text));
 			} else {
 				text = msgBaseDao.getMsgTextByAgainSubscribe(); // 再次关注，并且已经注册欢迎语 文本消息
 				return MsgXmlUtil.textToXml(WxMessageBuilder.getMsgResponseText(msgRequest, text));
