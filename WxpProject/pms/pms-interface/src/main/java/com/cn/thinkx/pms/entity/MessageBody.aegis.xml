@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings>
+	<mapping name="MessageBody">
+		<property index="0" name="txnCode" mappedName="txnCode" />
+		<property index="1" name="channel" mappedName="channel" />
+		<property index="2" name="rspCode" mappedName="rspCode" />
+		<property index="3" name="termId" mappedName="termId" />
+		<property index="4" name="consumerCode" mappedName="consumerCode" />
+		<property index="5" name="merchantCode" mappedName="merchantCode" />
+		<property index="6" name="merchantName" mappedName="merchantName" />
+		<property index="7" name="shopCode" mappedName="shopCode" />
+		<property index="8" name="orderId" mappedName="orderId" />
+		<property index="9" name="txnDate" mappedName="txnDate" />
+		<property index="10" name="txnTime" mappedName="txnTime" />
+		<property index="11" name="outCard" mappedName="outCard" />
+		<property index="12" name="outAccount" mappedName="outAccount" />
+		<property index="13" name="intoCard" mappedName="intoCard" />
+		<property index="14" name="intoAccount" mappedName="intoAccount" />
+		<property index="15" name="amount" mappedName="amount" />
+		<property index="16" name="origAmount" mappedName="origAmount" />
+		<property index="17" name="curType" mappedName="curType" />
+		<property index="18" name="payChannel" mappedName="payChannel" />
+		<property index="19" name="cardNO" mappedName="cardNO" />
+		<property index="20" name="pin" mappedName="pin" />
+		<property index="21" name="account" mappedName="account" />
+		<property index="22" name="cardHolder" mappedName="cardHolder" />
+		<property index="23" name="productInfo" mappedName="productInfo" />
+		<property index="24" name="remark" mappedName="remark" />
+		<property index="25" name="merchantURL" mappedName="merchantURL" />
+		<property index="26" name="settleDate" mappedName="settleDate" />
+		<property index="27" name="txnNo" mappedName="txnNo" />
+		<property index="28" name="origTxnNo" mappedName="origTxnNo" />
+		<property index="29" name="txnType" mappedName="txnType" />
+		<property index="30" name="oldTxnType" mappedName="oldTxnType" />
+		<property index="31" name="txnState" mappedName="txnState" />
+		<property index="32" name="sequenceNo" mappedName="sequenceNo" />
+		<property index="33" name="type" mappedName="type" />
+		<property index="34" name="flag" mappedName="flag" />
+		<property index="35" name="totalRow" mappedName="totalRow" />
+		<property index="36" name="realRow" mappedName="realRow" />
+		<property index="37" name="adjustType" mappedName="adjustType" />
+		<property index="38" name="startDt" mappedName="startDt" />
+		<property index="39" name="endDt" mappedName="endDt" />
+		<property index="40" name="startRow" mappedName="startRow" />
+		<property index="41" name="endRow" mappedName="endRow" />
+		<property index="42" name="srvFee" mappedName="srvFee" />
+		<property index="43" name="binValue" mappedName="binValue" />
+		<property index="44" name="operaterId" mappedName="operaterId" />
+		<property index="45" name="otherData" mappedName="otherData" />
+		<property index="46" name="payChnl" mappedName="payChnl" />
+		<property index="47" name="serviceFee" mappedName="serviceFee" />
+		<property index="48" name="batchNo" mappedName="batchNo" />
+		<property index="49" name="batchFileInfo" mappedName="batchFileInfo" />
+	</mapping>
+</mappings>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="main/header::header" />
+	<body>
+		<header th:include="main/navbar::navbar" />
+		<div id="contentwrapper">
+ 			<div class="main_content">
+ 				<nav>
+		            <div id="jCrumbs" class="breadCrumb module">
+		                <ul>
+		                    <li><a href="#"><i class="icon-home"></i></a></li>
+		                    <li>接受订单接口信息</li>
+		                </ul>
+		            </div>
+	        	</nav>
+				<form name="unifiedSubmit" id="unifiedForm" th:action="@{/trans/order/unifiedOrder}"  class="form-inline" method="post" >
+					<input type="text" class="span3" name="channer" id="channer" value="${channer}"/>
+					<input type="text" class="span3" name="userId" id="userId" value="${userId}"/>
+					<input type="text" class="span3" name="orderId" id="orderId" value="${orderId}"/>
+					<input type="text" class="span3" name="innerMerchantNo" id="innerMerchantNo" value="${innerMerchantNo}"/>
+					<input type="text" class="span3" name="innerShopNo" id="innerShopNo" value="${innerShopNo}"/>
+					<input type="text" class="span3" name="commodityName" id="commodityName" value="${commodityName}"/>
+					<input type="text" class="span3" name="commodityNum" id="commodityNum" value="${commodityNum}"/>
+					<input type="text" class="span3" name="txnAmount" id="txnAmount" value="${txnAmount}"/>
+					<input type="text" class="span3" name="attach" id="attach" value="${attach}"/>
+					<input type="text" class="span3"name="notify_url" id="notify_url" value="${notify_url}"/>
+					<input type="text" class="span3"name="redirect_type" id="redirect_type" value="${redirect_type}"/>
+					<input type="text" class="span3"name="redirect_url" id="redirect_url" value="${redirect_url}"/>
+					<input type="text" class="span3"name="sign" id="sign" value="${sign}"/>
+			    </form>
+			</div>
+		</div>
+		<!-- <script th:src="@{/cash/js/order/unifiedOrder.js}"></script> -->
+		<script type="text/javascript">
+			document.unifiedSubmit.submit()
+		</script>
+	</body>
+</html>
+

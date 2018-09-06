@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="main/header::header" />
+	<body>
+		<header th:include="main/navbar::navbar" />
+		<div id="contentwrapper">
+ 			<div class="main_content">
+ 				<nav>
+		            <div id="jCrumbs" class="breadCrumb module">
+		                <ul>
+		                    <li><a href="#"><i class="icon-home"></i></a></li>
+		                    <li>接受订单接口信息</li>
+		                </ul>
+		            </div>
+	        	</nav>
+				<form name="orderSubmit" id="transForm" th:action="@{/order/transOrder}"  class="form-inline" method="post" >
+					<input type="text" class="span3" name="e_eid" id="e_eid" value="${e_eid}"/>
+					<input type="text" class="span3" name="e_uid" id="e_uid" value="${e_uid}"/>
+					<input type="text" class="span3" name="trade_no" id="trade_no" value="${trade_no}"/>
+					<input type="text" class="span3" name="total_amount" id="total_amount" value="${total_amount}"/>
+					<input type="text" class="span3" name="extand_params" id="extand_params" value="${extand_params}"/>
+					<input type="text" class="span3" name="timestamp" id="timestamp" value="${timestamp}"/>
+					<input type="text" class="span3" name="sign_type" id="sign_type" value="${sign_type}"/>
+					<input type="text" class="span3"name="sign" id="sign" value="${sign}"/>
+			    </form>
+			</div>
+		</div>
+		<script type="text/javascript">
+			document.orderSubmit.submit()
+		</script>
+	</body>
+</html>
+

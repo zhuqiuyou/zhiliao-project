@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cn.thinkx.ecom.cash.order.mapper.OrderInfMapper">
+	
+	<sql id="orderInfColumns">
+		 ID,
+		 CHANNEL,
+		 USER_ID, 
+		 ROUTER_ORDER_NO,
+		 MERCHANT_NO,
+		 SHOP_NO,
+		 COMMODITY_NAME,
+		 COMMODITY_NUM,
+		 TXN_AMOUNT,
+		 ORDER_TYPE,
+		 NOTIFY_URL,
+		 REDIRECT_URL,
+		 TXN_FLOW_NO,
+		 ORG_ID,
+		 RESV1,
+		 RESV2,
+		 RESV3,
+		 RESV4,
+		 RESV5,
+		 RESV6,
+		 DATA_STAT,
+		 REMARKS,
+		 CREATE_USER,
+		 TO_CHAR(CREATE_TIME, 'YYYY-MM-DD HH24:MI:SS') CREATE_TIME,
+		 UPDATE_USER,
+		 TO_CHAR(UPDATE_TIME, 'YYYY-MM-DD HH24:MI:SS') UPDATE_TIME,
+		 LOCK_VERSION
+	</sql>
+	
+	<select id="getList" parameterType="OrderInf" resultType="OrderInf">
+		select
+			<include refid="orderInfColumns" />
+		from TB_ECOM_ORDER_INF
+		where DATA_STAT = '0'
+		order by CREATE_TIME desc
+	</select>
+	
+	<select id="selectByPrimaryKey" parameterType="String" resultType="OrderInf">
+		select
+			<include refid="orderInfColumns" />
+		from TB_ECOM_ORDER_INF
+		where DATA_STAT = '0' AND ID = #{primaryKey}
+	</select>
+	
+	<select id="selectByRouterOrderNo" parameterType="String" resultType="OrderInf">
+		select 
+			<include refid="orderInfColumns" />
+		from TB_ECOM_ORDER_INF
+		where DATA_STAT = '0' AND ROUTER_ORDER_NO = #{routerOrderNo}
+	</select>
+	
+	<select id="getInsCodeByMchntCode" parameterType="String" resultType="String">
+		SELECT 
+			B.INS_CODE 
+		FROM TB_MERCHANT_INF A, TB_INS_INF B 
+		WHERE A.INS_ID = B.INS_ID 
+		AND A.MCHNT_CODE = #{mchntCode}
+	</select>
+	
+	<select id="getOrderInfByOrderInf" parameterType="OrderInf" resultType="OrderInf">
+		SELECT * FROM (
+			SELECT 
+				<include refid="orderInfColumns" />
+			FROM TB_ECOM_ORDER_INF
+			WHERE 1=1
+			<if test="dataStat !=null and dataStat !='' ">
+				AND DATA_STAT = #{dataStat}
+			</if>
+			 <if test="routerOrderNo !=null and routerOrderNo !='' ">
+				AND ROUTER_ORDER_NO = #{routerOrderNo}
+			</if>
+			<if test="channel !=null and channel !='' ">
+				AND CHANNEL = #{channel}
+			</if>
+			<if test="merchantNo !=null and merchantNo !='' ">
+				AND MERCHANT_NO = #{merchantNo}
+			</if>
+			<if test="shopNo !=null and shopNo !='' ">
+				AND SHOP_NO = #{shopNo}
+			</if>
+			<if test="orderType !=null and orderType !='' ">
+				AND ORDER_TYPE = #{orderType}
+			</if>
+			<if test="txnFlowNo !=null and txnFlowNo !='' ">
+				AND TXN_FLOW_NO = #{txnFlowNo}
+			</if>
+			ORDER BY CREATE_TIME DESC
+		) WHERE ROWNUM = 1
+	</select>
+	
+	<insert id="insert" parameterType="OrderInf">
+	   <selectKey resultType="String" order="BEFORE" keyProperty="id">  
+			<include refid="com.cn.thinkx.ecom.cash.order.mapper.SqlCommonMapper.getCommonId" />
+		</selectKey>
+		INSERT INTO TB_ECOM_ORDER_INF(
+			ID,
+			CHANNEL,
+			USER_ID,
+			ROUTER_ORDER_NO,
+			MERCHANT_NO,
+			SHOP_NO,
+			COMMODITY_NAME,
+			COMMODITY_NUM,
+			TXN_AMOUNT,
+			ORDER_TYPE,
+			NOTIFY_URL,
+			REDIRECT_URL,
+			TXN_FLOW_NO,
+		 	ORG_ID,
+			RESV1,
+		 	RESV2,
+		 	RESV3,
+		 	RESV4,
+		 	RESV5,
+		 	RESV6,
+			DATA_STAT,
+			REMARKS,
+			CREATE_TIME,
+			UPDATE_TIME,
+			LOCK_VERSION
+		) VALUES (
+			#{id},
+			#{channel,jdbcType=VARCHAR},
+			#{userId,jdbcType=VARCHAR},
+			#{routerOrderNo,jdbcType=VARCHAR},
+			#{merchantNo,jdbcType=VARCHAR},
+			#{shopNo,jdbcType=VARCHAR},
+			#{commodityName,jdbcType=VARCHAR},
+			#{commodityNum,jdbcType=VARCHAR},
+			#{txnAmount,jdbcType=VARCHAR},
+			#{orderType,jdbcType=VARCHAR},
+			#{notifyUrl,jdbcType=VARCHAR},
+			#{redirectUrl,jdbcType=VARCHAR},
+			#{txnFlowNo,jdbcType=VARCHAR},
+			#{orgId,jdbcType=VARCHAR},
+			#{resv1,jdbcType=VARCHAR},
+			#{resv2,jdbcType=VARCHAR},
+			#{resv3,jdbcType=VARCHAR},
+			#{resv4,jdbcType=VARCHAR},
+			#{resv5,jdbcType=VARCHAR},
+			#{resv6,jdbcType=VARCHAR},
+			'0',
+			#{remarks,jdbcType=VARCHAR},
+			SYSDATE,
+			SYSDATE,
+			'0'
+		)
+	</insert>
+	
+	<update id="updateByPrimaryKey" parameterType="OrderInf">
+		update TB_ECOM_ORDER_INF
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="channel != null">CHANNEL=#{channel,jdbcType=VARCHAR},</if>
+			<if test="userId != null">USER_ID=#{userId,jdbcType=VARCHAR},</if>
+			<if test="routerOrderNo != null">ROUTER_ORDER_NO=#{routerOrderNo,jdbcType=VARCHAR},</if>
+			<if test="merchantNo != null">MERCHANT_NO=#{merchantNo,jdbcType=VARCHAR},</if>
+			<if test="shopNo != null">SHOP_NO=#{shopNo,jdbcType=VARCHAR},</if>
+			<if test="commodityName != null">COMMODITY_NAME=#{commodityName,jdbcType=VARCHAR},</if>
+			<if test="commodityNum != null">COMMODITY_NUM=#{commodityNum,jdbcType=VARCHAR},</if>
+			<if test="txnAmount != null">TXN_AMOUNT=#{txnAmount,jdbcType=VARCHAR},</if>
+			<if test="orderType != null">ORDER_TYPE=#{orderType,jdbcType=VARCHAR},</if>
+			<if test="notifyUrl != null">NOTIFY_URL=#{notifyUrl,jdbcType=VARCHAR},</if>
+			<if test="redirectUrl != null">REDIRECT_URL=#{redirectUrl,jdbcType=VARCHAR},</if>
+			<if test="txnFlowNo != null">TXN_FLOW_NO=#{txnFlowNo,jdbcType=VARCHAR},</if>
+			<if test="orgId != null">ORG_ID=#{orgId,jdbcType=VARCHAR},</if>
+			<if test="resv1 != null">RESV1=#{resv1,jdbcType=VARCHAR},</if>
+			<if test="resv2 != null">RESV1=#{resv2,jdbcType=VARCHAR},</if>
+			<if test="resv3 != null">RESV1=#{resv3,jdbcType=VARCHAR},</if>
+			<if test="resv4 != null">RESV1=#{resv4,jdbcType=VARCHAR},</if>
+			<if test="resv5 != null">RESV1=#{resv5,jdbcType=VARCHAR},</if>
+			<if test="resv6 != null">RESV1=#{resv6,jdbcType=VARCHAR},</if>
+			<if test="dataStat != null">DATA_STAT=#{dataStat,jdbcType=VARCHAR},</if>
+			UPDATE_TIME=SYSDATE,
+			LOCK_VERSION=LOCK_VERSION+1
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="deleteByPrimaryKey" parameterType="String">
+		update TB_ECOM_ORDER_INF set DATA_STAT = '1' where ID = #{id}
+	</delete>
+	
+</mapper>

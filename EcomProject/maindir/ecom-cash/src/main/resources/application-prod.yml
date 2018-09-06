@@ -1,0 +1,108 @@
+server:
+  port: 12401
+  contextPath: /ecom-cash
+redis: 
+  pool: 
+    data: 
+      session: 
+        host: 192.168.110.2:7111,192.168.110.3:7112,192.168.110.4:7113
+spring:
+  datasource:
+    jndi-name: JDBC
+  thymeleaf: 
+    prefix: classpath:/views/
+    #content-type: text/html
+    #suffix: .html
+    #mode: HTML5
+    #encoding: UTF-8
+    # set to false for hot refresh
+    #cache: true
+  dubbo:
+    registry:
+      address: zookeeper://192.168.110.2:12811?backup=192.168.110.3:12812,192.168.110.4:12813
+    application:
+      name: dubbo_ecom_consumer
+    protocol:
+      name: dubbo
+    scan: com.cn.thinkx.ecom
+  redis: 
+    cluster: 
+      nodes: 192.168.110.2:7111,192.168.110.3:7112,192.168.110.4:7113,192.168.110.4:7114,192.168.110.2:7115,192.168.110.3:7116
+      connection-timeout: 1000
+      soTimeout: 3000
+      max-attempts: 5
+      password: 
+      max-redirects: 2
+    timeout: 3000
+    pool: 
+      max-total: 1024
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+      block-when-exhausted: true
+      max-wait-millis: 3000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      minEvictableIdleTimeMillis: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      numTestsPerEvictionRun: 1  
+  activemq:
+    broker-url: failover:(tcp://192.168.110.2:51511,tcp://192.168.110.3:51512,tcp://192.168.110.4:51513)?randomize=false
+    user: admin
+    password: admin
+    pool:
+      max-connections: 10
+wecard:
+  wechat:
+    msg: wecard.activemq.send.wechat.msg.v1
+  template: 
+    msg:
+      mcht:
+        v1: wecard.wechat.mcht.collection.bill.template.msg.v1  
+myBatis:
+  mapperLocations: classpath:mapper/*.xml
+  configLocations: classpath:conf/mybatis-config.xml
+logging:
+  config: classpath:conf/logback-ecom.xml
+  
+#海意通加密Key(收银台，退款，查询)
+HYT_SIGN_KEY: YPEgSbuyRcoDV49yHzx4wS4ZeKHFVQA84Hv4IunjH10
+#家乐宝加密Key(收银台，退款，查询)
+JLB_SIGN_KEY: d1ETaUw8B1bOZ2Gv0vBsqXDdCfkF2wRSkZRVp6ZCDgn
+#自建商城加密Key(收银台，退款，查询)
+MYESHOP_SIGN_KEY: 5XsRyenq22OV2uOwgyHROjYKpECBlfUPk4fkMnt3ujb
+#海豚通通兑加密Key(收银台，退款，查询)
+HTTTD_SIGN_KEY: A255AD7C473B71F3AC2729F1B83D1125
+#话费充值加密Key(收银台，退款，查询)
+HFCZ_SIGN_KEY: vReT9kHUobzFRQhykhBntir4UrduhpCqtms5aEvKAGr
+
+#电商下单地址（家乐宝，海镱通，海豚通通兑，自建商城）
+ECOM_UNIFIEDORDER_URL: http://cas.i-zhiliao.com/ecom-cash/trans/order/unifiedOrder
+#电商通知返回地址（家乐宝，海镱通，海豚通通兑，自建商城）
+ECOM_NOTIFY_URL: http://cas.i-zhiliao.com/ecom-cash/trans/order/ecomBackResult
+#电商重定向地址（家乐宝，海镱通，海豚通通兑，自建商城）
+ECOM_REDIRECT_URL: http://cas.i-zhiliao.com/ecom-cash/trans/order/ecomRedirectResult
+#电商退款地址（家乐宝，海镱通，海豚通通兑，自建商城）
+ECOM_REFUND_URL: http://cas.i-zhiliao.com/ecom-cash/trans/order/ecomOrderRefund
+
+#知了企服加密Key(收银台)
+HKB_SIGN_KEY: B0k3EdcZ4YEAOXeQcGWipgFlpvNfclNMluLhsUxbxyD
+#知了企服收银台地址
+HKB_CASH_URL: http://wx.i-zhiliao.com/trans/order/unifiedOrder.html
+#知了企服查单接口地址
+HKB_SEARCH_URL: http://wx.i-zhiliao.com/trans/order/transOrderQuery.html
+#知了企服退款接口地址
+HKB_REFUND_URL: http://wx.i-zhiliao.com/trans/order/transOrderRefund.html
+
+#嘉福京东加密Key(收银台)
+JF_SIGN_KEY: b690e1bfd713de03fc0af2f2c4d8044d
+#嘉福京东收银台地址
+JF_TRANS_URL: https://open.jia-fu.cn/gateway/portal
+#电商平台下单接口地址（嘉福京东）
+transOrder: http://cas.i-zhiliao.com/ecom-cash/order/transOrder.html
+#电商平台订单查询接口地址（嘉福京东）
+searchOrder: http://cas.i-zhiliao.com/ecom-cash/order/searchOrder.html
+#电商平台退款接口地址（嘉福京东）
+refundOrder: http://cas.i-zhiliao.com/ecom-cash/order/refundOrder.html

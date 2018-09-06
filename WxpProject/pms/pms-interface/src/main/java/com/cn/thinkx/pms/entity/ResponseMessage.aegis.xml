@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings>
+	<mapping name="ResponseMessage">
+		<property  index="0" mappedName="responseHeard"  componentType="com.cn.thinkx.pms.entity.ResponseHeard" />
+		<property  index="1" mappedName="responseBody"  componentType="com.cn.thinkx.pms.entity.MessageBody" />
+	</mapping>
+</mappings>

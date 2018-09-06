@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cn.thinkx.ecom.cash.wxtrans.mapper.UserMerchantAcctMapper">
+	
+	<select id="getAccBalance" parameterType="UserMerchantAcct" resultType="String">
+		select　ACC_BAL 
+			from VIEW_USER_MERCHANT_ACCT 
+	  	where EXTERNAL_ID = #{externalId} 
+	  		and CHANNEL_CODE = #{channelCode} 
+	  		and MCHNT_CODE = #{mchntCode} 
+	</select>
+	
+	<select id="getUserId" parameterType="UserMerchantAcct" resultType="String">
+		select　USER_ID 
+			from VIEW_USER_MERCHANT_ACCT 
+	  	where EXTERNAL_ID = #{externalId} 
+	  		and CHANNEL_CODE = #{channelCode} 
+	  		and MCHNT_CODE = #{mchntCode} 
+	</select>
+	
+	<select id="getExternalId" parameterType="UserMerchantAcct" resultType="String">
+		select EXTERNAL_ID from
+			(select EXTERNAL_ID from TB_CHANNEL_USER_INF
+				where USER_ID = #{userId} and CHANNEL_CODE = #{channelCode}
+				order by CREATE_TIME desc
+			) where rownum=1
+	</select>
+	
+</mapper>

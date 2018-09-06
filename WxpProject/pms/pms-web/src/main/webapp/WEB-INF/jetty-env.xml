@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+
+	<New id="JDBC" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg>JDBC</Arg>
+		<Arg>
+			<New class="org.apache.commons.dbcp.BasicDataSource">
+                <Set name="driverClassName">oracle.jdbc.driver.OracleDriver</Set>
+                <Set name="url">jdbc:oracle:thin:@127.0.0.1:1521:XE</Set>
+                <Set name="username">pms</Set>
+                <Set name="password">pms</Set>
+                <Set name="maxActive">20</Set>
+            </New>
+		</Arg>
+	</New>
+	<Set name="sessionHandler">
+		<New class="org.mortbay.jetty.servlet.SessionHandler">
+			<Arg>
+				<New
+					class="org.mortbay.jetty.servlet.HashSessionManager">
+					<Set name="storeDirectory">
+						target/session-story
+					</Set>
+				</New>
+			</Arg>
+		</New>
+	</Set>
+</Configure>
+
+
+

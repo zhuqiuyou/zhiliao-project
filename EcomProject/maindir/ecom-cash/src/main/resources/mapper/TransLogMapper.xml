@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cn.thinkx.ecom.cash.wxtrans.mapper.TransLogMapper">
+
+	<sql id="TransLogColumns">
+		txn_primary_key,
+		settle_date,
+		org_txn_primary_key,
+		dms_related_key,
+		org_dms_related_key,
+		trans_id,
+		trans_st,
+		term_code,
+		shop_code,
+		mchnt_code,
+		ins_code,
+		resp_code,
+		pri_acct_no,
+		card_no,
+		user_name,
+		product_code,
+		trans_amt,
+		org_trans_amt,
+		trans_curr_cd,
+		card_attr,
+		trans_chnl,
+		trans_fee,
+		trans_fee_type,
+		tfr_in_acct_no,
+		tfr_out_acct_no,
+		additional_info,
+		remarks,
+		create_time,
+		update_time
+	</sql>
+	
+	<sql id="InterfaceTransLogColumns">
+			INTERFACE_PRIMARY_KEY,		
+			SETTLE_DATE,		
+			ORG_INTERFACE_PRIMARY_KEY,	
+			DMS_RELATED_KEY,	
+			ORG_DMS_RELATED_KEY,
+			TRANS_ID,
+			TRANS_ST,
+			INS_CODE,	
+			MCHNT_CODE,
+			SHOP_CODE,
+			RESP_CODE,
+			PRI_ACCT_NO,
+			CARD_NO,
+			USER_INF_USER_NAME,
+			PRODUCT_CODE,
+			TRANS_AMT,
+			UPLOAD_AMT,
+			TRANS_CURR_CD,
+			TRANS_CHNL,
+			TRANS_FEE,
+			TRANS_FEE_TYPE,
+			TFR_IN_ACCT_NO,
+			TFR_OUT_ACCT_NO,	
+			ADDITIONAL_INFO,
+			REMARKS,
+			CREATE_USER,
+			UPDATE_USER,
+			CREATE_TIME,
+			UPDATE_TIME
+	</sql>
+	
+	<select id="selectTransLog"  parameterType="TransLog" resultType="String">
+		select NVL(SUM(trans_amt) ,0) TRANS_AMT from (
+			select 
+				<include refid="TransLogColumns" /> 
+			from TB_TRANS_LOG1 
+				where TRANS_ID = 'W11' and MCHNT_CODE = #{mchntCode} and SHOP_CODE = #{shopCode} and USER_NAME = #{userName}
+			union all
+			select 
+				<include refid="TransLogColumns" /> 
+			from TB_TRANS_LOG2 
+				where TRANS_ID = 'W11' and MCHNT_CODE = #{mchntCode} and SHOP_CODE = #{shopCode} and USER_NAME = #{userName}
+			union all
+			select 
+				<include refid="TransLogColumns" /> 
+			from TB_TRANS_LOG_HIS 
+				where TRANS_ID = 'W11' and MCHNT_CODE = #{mchntCode} and SHOP_CODE = #{shopCode} and USER_NAME = #{userName}
+		)
+	</select>
+	
+	<select id="getTransLogByDmsId" parameterType="String" resultType="TransLog">
+		select
+		<include refid="TransLogColumns" />
+		from (
+			select
+				<include refid="TransLogColumns" />
+			from TB_TRANS_LOG1
+				where DMS_RELATED_KEY = #{dmsRelatedKey}
+			union all
+			select
+				<include refid="TransLogColumns" />
+			from TB_TRANS_LOG2
+				where DMS_RELATED_KEY = #{dmsRelatedKey}
+			union all
+			select
+				<include refid="TransLogColumns" />
+			from TB_TRANS_LOG_HIS
+				where DMS_RELATED_KEY = #{dmsRelatedKey}
+		) 
+		where ROWNUM = 1
+	</select>
+	
+	<select id="getIntfaceTransLogByDmsId"  parameterType="String" resultType="IntfaceTransLog">
+		select <include refid="InterfaceTransLogColumns" /> from TB_INTFACE_TRANS_LOG1 where DMS_RELATED_KEY = #{dmsRelatedKey}
+		union all
+		select <include refid="InterfaceTransLogColumns" /> from TB_INTFACE_TRANS_LOG2 where DMS_RELATED_KEY = #{dmsRelatedKey}
+		union all
+		select <include refid="InterfaceTransLogColumns" /> from TB_INTFACE_TRANS_LOG_HIS where DMS_RELATED_KEY = #{dmsRelatedKey}
+	</select>	
+
+</mapper>

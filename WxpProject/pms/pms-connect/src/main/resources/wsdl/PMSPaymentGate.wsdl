@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://pms.thinkx.cn.com/PMSPaymentGate" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AMLService"
+	targetNamespace="http://pms.thinkx.cn.com/PMSPaymentGate">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://pms.thinkx.cn.com/PMSPaymentGate">
+			<xsd:element name="searchRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="searchRequestHeard" type="tns:searchRequestHeard" />
+						<xsd:element name="searchRequestBody" type="tns:messageBody" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="searchResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="searchResponseHeard" type="tns:searchResponseHeard" />
+						<xsd:element name="searchResponseBody" type="tns:messageBody" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:complexType name="searchRequestHeard">
+				<xsd:sequence>
+					<xsd:element name="seq" type="xsd:string" />
+					<xsd:element name="requestDate" type="xsd:string" />
+					<xsd:element name="status" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="searchResponseHeard">
+				<xsd:sequence>
+					<xsd:element name="seq" type="xsd:string" />
+					<xsd:element name="responseDate" type="xsd:string" />
+					<xsd:element name="status" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="messageBody">
+				<xsd:sequence>
+					<xsd:element name="txnCode" type="xsd:string" />
+					<xsd:element name="channel" type="xsd:string" />
+					<xsd:element name="rspCode" type="xsd:string" />
+					<xsd:element name="termId" type="xsd:string" />
+					<xsd:element name="consumerCode" type="xsd:string" />
+					<xsd:element name="merchantCode" type="xsd:string" />
+					<xsd:element name="merchantName" type="xsd:string" />
+					<xsd:element name="shopCode" type="xsd:string" />
+					<xsd:element name="orderId" type="xsd:string" />
+					<xsd:element name="txnDate" type="xsd:string" />
+					<xsd:element name="txnTime" type="xsd:string" />
+					<xsd:element name="outCard" type="xsd:string" />
+					<xsd:element name="outAccount" type="xsd:string" />
+					<xsd:element name="intoCard" type="xsd:string" />
+					<xsd:element name="intoAccount" type="xsd:string" />
+					<xsd:element name="amount" type="xsd:string" />
+					<xsd:element name="origAmount" type="xsd:string" />
+					<xsd:element name="curType" type="xsd:string" />
+					<xsd:element name="payChannel" type="xsd:string" />
+					<xsd:element name="cardNO" type="xsd:string" />
+					<xsd:element name="pin" type="xsd:string" />
+					<xsd:element name="account" type="xsd:string" />
+					<xsd:element name="cardHolder" type="xsd:string" />
+					<xsd:element name="productInfo" type="xsd:string" />
+					<xsd:element name="remark" type="xsd:string" />
+					<xsd:element name="merchantURL" type="xsd:string" />
+					<xsd:element name="settleDate" type="xsd:string" />
+					<xsd:element name="txnNo" type="xsd:string" />
+					<xsd:element name="origTxnNo" type="xsd:string" />
+					<xsd:element name="txnType" type="xsd:string" />
+					<xsd:element name="oldTxnType" type="xsd:string" />
+					<xsd:element name="txnState" type="xsd:string" />
+					<xsd:element name="sequenceNo" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+					<xsd:element name="flag" type="xsd:string" />
+					<xsd:element name="totalRow" type="xsd:string" />
+					<xsd:element name="realRow" type="xsd:string" />
+					<xsd:element name="adjustType" type="xsd:string" />
+					<xsd:element name="start_dt" type="xsd:string" />
+					<xsd:element name="end_dt" type="xsd:string" />
+					<xsd:element name="start_row" type="xsd:string" />
+					<xsd:element name="end_row" type="xsd:string" />
+					<xsd:element name="srvFee" type="xsd:string" />
+					<xsd:element name="binValue" type="xsd:string" />
+					<xsd:element name="operaterId" type="xsd:string" />
+					<xsd:element name="otherData" type="xsd:string" />
+					<xsd:element name="payChnl" type="xsd:string" />
+					<xsd:element name="serviceFee" type="xsd:string" />
+					<xsd:element name="batchNo" type="xsd:string" />
+					<xsd:element name="batchFileInfo" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="searchRequest">
+		<wsdl:part name="input" element="tns:searchRequest" />
+	</wsdl:message>
+	<wsdl:message name="searchResponse">
+		<wsdl:part name="output" element="tns:searchResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="PMSPaymentGateServicePortType">
+		<wsdl:operation name="search">
+			<wsdl:input message="tns:searchRequest" />
+			<wsdl:output message="tns:searchResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="PMSPaymentGateServiceBinding" type="tns:PMSPaymentGateServicePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="search">
+			<soap:operation soapAction="http://pms.thinkx.cn.com/PMSPaymentGate/search" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PMSService">
+		<wsdl:port binding="tns:PMSPaymentGateServiceBinding" name="PMSServicePort">
+			<soap:address location="http://" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
