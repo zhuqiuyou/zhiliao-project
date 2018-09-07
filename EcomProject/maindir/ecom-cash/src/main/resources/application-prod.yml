@@ -5,10 +5,33 @@ redis:
   pool: 
     data: 
       session: 
-        host: 192.168.110.2:7111,192.168.110.3:7112,192.168.110.4:7113
+        host: 10.0.0.106:7111,10.0.0.103:7112,10.0.0.101:7113
 spring:
   datasource:
     jndi-name: JDBC
+    name: mySpringBoot
+    url: jdbc:oracle:thin:@10.0.0.104:1521:zldb
+    username: isecmdb
+    password: isecmdb
+    driver-class-name: oracle.jdbc.OracleDriver
+    type: com.alibaba.druid.pool.DruidDataSource
+    minActive: 1
+    maxActive: 20
+    initialSize: 1
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+  thymeleaf: 
+    prefix: classpath:/views/
+    #content-type: text/html
+    #suffix: .html
+    #mode: HTML5
+    #encoding: UTF-8
+    # set to false for hot refresh
+    cache: false
   thymeleaf: 
     prefix: classpath:/views/
     #content-type: text/html
@@ -19,7 +42,7 @@ spring:
     #cache: true
   dubbo:
     registry:
-      address: zookeeper://192.168.110.2:12811?backup=192.168.110.3:12812,192.168.110.4:12813
+      address: zookeeper://10.0.0.103:12811?backup=10.0.0.106:12812,10.0.0.101:12813
     application:
       name: dubbo_ecom_consumer
     protocol:
@@ -27,7 +50,7 @@ spring:
     scan: com.cn.thinkx.ecom
   redis: 
     cluster: 
-      nodes: 192.168.110.2:7111,192.168.110.3:7112,192.168.110.4:7113,192.168.110.4:7114,192.168.110.2:7115,192.168.110.3:7116
+      nodes: 10.0.0.106:7111,10.0.0.106:7115,10.0.0.103:7112,10.0.0.106:7116,10.0.0.101:7113,10.0.0.101:7114
       connection-timeout: 1000
       soTimeout: 3000
       max-attempts: 5
@@ -49,7 +72,7 @@ spring:
       timeBetweenEvictionRunsMillis: 60000
       numTestsPerEvictionRun: 1  
   activemq:
-    broker-url: failover:(tcp://192.168.110.2:51511,tcp://192.168.110.3:51512,tcp://192.168.110.4:51513)?randomize=false
+    broker-url: failover:(tcp://10.0.0.103:51511,tcp://10.0.0.106:51512,tcp://10.0.0.101:51513)?randomize=false
     user: admin
     password: admin
     pool:
