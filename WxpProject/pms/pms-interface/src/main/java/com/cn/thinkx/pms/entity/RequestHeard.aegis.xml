@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mappings>
-	<mapping name="RequestHeard">
-		<property index="0" name="seq"  mappedName="seq" />
-		<property index="1" name="requestDate" mappedName="requestDate" />
-		<property index="2" name="status" mappedName="status" />
-	</mapping>
-</mappings>

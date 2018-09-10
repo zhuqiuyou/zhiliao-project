@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mappings>
-	<mapping name="RequestMessage">
-		<property  index="0" mappedName="requestHeard"  componentType="com.cn.thinkx.pms.entity.RequestHeard" />
-		<property  index="1" mappedName="responseBody"  componentType="com.cn.thinkx.pms.entity.MessageBody" />
-	</mapping>
-</mappings>

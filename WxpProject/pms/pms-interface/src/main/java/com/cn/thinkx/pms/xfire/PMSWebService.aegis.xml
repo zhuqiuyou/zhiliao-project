@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mappings>
-	<mapping>
-		<method name="search">
-			<parameter index="0" mappedName="requestMessage"  componentType="com.cn.thinkx.pms.entity.RequestMessage"/>
-			<return-type componentType="com.cn.thinkx.pms.entity.ResponseMessage"></return-type>
-		</method>
-	</mapping>
-</mappings>
