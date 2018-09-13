@@ -241,4 +241,5 @@ public class CommonController extends BaseController {
 		mv.addObject("mchntCode", mchntCode);
 		return mv;
 	}
+	
 }

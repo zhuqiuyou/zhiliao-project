@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.cn.thinkx.common.redis.util.RedisConstants;
 import com.cn.thinkx.common.redis.util.RedisDictProperties;
 import com.cn.thinkx.common.wecard.domain.base.ResultHtml;
 import com.cn.thinkx.common.wecard.domain.merchant.MerchantManager;
@@ -22,6 +23,7 @@ import com.cn.thinkx.pms.base.utils.DateUtil;
 import com.cn.thinkx.pms.base.utils.NumberUtils;
 import com.cn.thinkx.pms.base.utils.RandomUtils;
 import com.cn.thinkx.pms.base.utils.StringUtil;
+import com.cn.thinkx.pms.base.utils.BaseConstants.SendMsgTypeEnum;
 import com.cn.thinkx.wecard.customer.module.customer.service.PersonInfService;
 import com.cn.thinkx.wecard.customer.module.customer.service.WxTransLogService;
 import com.cn.thinkx.wecard.customer.module.merchant.service.MerchantInfService;
@@ -30,6 +32,8 @@ import com.cn.thinkx.wecard.customer.module.merchant.service.ShopInfService;
 import com.cn.thinkx.wecard.customer.module.pub.service.CommonSerivce;
 import com.cn.thinkx.wecard.customer.module.wxcms.WxCmsContents;
 import com.cn.thinkx.wechat.base.wxapi.process.WxMemoryCacheClient;
+
+import redis.clients.jedis.JedisCluster;
 
 @Service("commonSerivce")
 public class CommonSerivceImpl implements CommonSerivce {
@@ -63,6 +67,10 @@ public class CommonSerivceImpl implements CommonSerivce {
 	@Autowired
 	@Qualifier("merchantInfService")
 	private MerchantInfService merchantInfService;
+	
+	@Autowired
+	@Qualifier("jedisCluster")
+	private JedisCluster jedisCluster;
 
 	@Override
 	public String findMmSsAddSeqId(String rCodePrefix) {
@@ -81,8 +89,23 @@ public class CommonSerivceImpl implements CommonSerivce {
 		int expireMinutes = NumberUtils
 				.parseInt(RedisDictProperties.getInstance().getdictValueByCode("SMS_EXPIRE_TIME"));
 		String phoneCode = RandomUtils.getRandomNumbernStr(6);
-		boolean sendStatus = messageService.sendMessage(phoneNumber,
-				"【知了企服】验证码：" + phoneCode + "（有效期" + expireMinutes + "分钟）您正在操作<" + bizName + ">业务，切勿告知他人！");
+//		boolean sendStatus = messageService.sendMessage(phoneNumber,
+//				"【知了企服】验证码：" + phoneCode + "（有效期" + expireMinutes + "分钟）您正在操作<" + bizName + ">业务，切勿告知他人！");
+		String templateCode = "";
+		if (SendMsgTypeEnum.msg_01.getName().equals(bizName)) {
+			templateCode = jedisCluster.hget(RedisConstants.REDIS_HASH_TABLE_TB_BASE_DICT_KV, BaseConstants.ALIYUN_MSM_TEMPLATE_CODE_REGISTER);
+		} else if (SendMsgTypeEnum.msg_02.getName().equals(bizName)) {
+			templateCode = jedisCluster.hget(RedisConstants.REDIS_HASH_TABLE_TB_BASE_DICT_KV, BaseConstants.ALIYUN_MSM_TEMPLATE_CODE_PWDRESET);
+		} else if (SendMsgTypeEnum.msg_03.getName().equals(bizName)) {
+			
+		} else if (SendMsgTypeEnum.msg_04.getName().equals(bizName)) {
+			templateCode = jedisCluster.hget(RedisConstants.REDIS_HASH_TABLE_TB_BASE_DICT_KV, BaseConstants.ALIYUN_MSM_TEMPLATE_CODE_CARDRESELL);
+		} else if (SendMsgTypeEnum.msg_05.getName().equals(bizName)) {
+			templateCode = jedisCluster.hget(RedisConstants.REDIS_HASH_TABLE_TB_BASE_DICT_KV, BaseConstants.ALIYUN_MSM_TEMPLATE_CODE_ADDBANKCARD);
+		}
+		
+		String templateParam = "{\"code\":\"" + phoneCode + "\"}";
+		boolean sendStatus = messageService.sendMessage(phoneNumber, templateCode, templateParam);
 		if (sendStatus) {
 			// 手机动态码
 			session.setAttribute(WxCmsContents.SESSION_PHONECODE, phoneCode);

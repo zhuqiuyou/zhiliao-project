@@ -29,6 +29,7 @@ import com.cn.thinkx.pms.base.utils.DateUtil;
 import com.cn.thinkx.pms.base.utils.NumberUtils;
 import com.cn.thinkx.pms.base.utils.RandomUtils;
 import com.cn.thinkx.pms.base.utils.StringUtil;
+import com.cn.thinkx.pms.base.utils.BaseConstants.SendMsgTypeEnum;
 import com.cn.thinkx.wechat.base.wxapi.process.WxMemoryCacheClient;
 import com.cn.thinkx.wxcms.WxCmsContents;
 
@@ -66,8 +67,22 @@ public class CommonController extends BaseController{
 		ResultHtml resultMap = new ResultHtml();
 		int expireMinutes = NumberUtils.parseInt(RedisDictProperties.getInstance().getdictValueByCode("SMS_EXPIRE_TIME"));
 		String phoneCode = RandomUtils.getRandomNumbernStr(6);
-		boolean sendStatus = messageService.sendMessage(phoneNumber, "【知了企服】验证码：" + phoneCode + 
-				"（有效期" + expireMinutes + "分钟）您正在操作<" + bizName + ">业务，切勿告知他人！");
+		/*boolean sendStatus = messageService.sendMessage(phoneNumber, "【知了企服】验证码：" + phoneCode + 
+				"（有效期" + expireMinutes + "分钟）您正在操作<" + bizName + ">业务，切勿告知他人！");*/
+		String templateCode = "";
+		if (SendMsgTypeEnum.msg_01.getName().equals(bizName)) {
+			templateCode = RedisDictProperties.getInstance().getdictValueByCode("ALIYUN_MSM_TEMPLATE_CODE_REGISTER");
+		} else if (SendMsgTypeEnum.msg_02.getName().equals(bizName)) {
+			templateCode = RedisDictProperties.getInstance().getdictValueByCode("ALIYUN_MSM_TEMPLATE_CODE_PWDRESET");
+		} else if (SendMsgTypeEnum.msg_03.getName().equals(bizName)) {
+			
+		} else if (SendMsgTypeEnum.msg_04.getName().equals(bizName)) {
+			templateCode = RedisDictProperties.getInstance().getdictValueByCode("ALIYUN_MSM_TEMPLATE_CODE_CARDRESELL");
+		} else if (SendMsgTypeEnum.msg_05.getName().equals(bizName)) {
+			templateCode = RedisDictProperties.getInstance().getdictValueByCode("ALIYUN_MSM_TEMPLATE_CODE_ADDBANKCARD");
+		}
+		String templateParam = "{\"code\":\"" + phoneCode + "\"}";
+		boolean sendStatus = messageService.sendMessage(phoneNumber, templateCode, templateParam);
 		if (sendStatus) {
 			// 手机动态码
 			session.setAttribute(WxCmsContents.SESSION_PHONECODE,phoneCode);
@@ -228,4 +243,5 @@ public class CommonController extends BaseController{
 		
 		return mv;
 	}
+	
 }

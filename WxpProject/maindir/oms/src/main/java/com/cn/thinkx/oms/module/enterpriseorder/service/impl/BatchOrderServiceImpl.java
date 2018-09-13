@@ -380,9 +380,12 @@ public class BatchOrderServiceImpl implements BatchOrderService {
 									order.setRemarks(resp.getInfo());
 									batchOrderListMapper.updateBatchOrderList(order);
 									if(RedisDictProperties.getInstance().getdictValueByCode("ACC_HKB_PROD_NO").equals(userMerchantAcct.getProductCode())){
-										boolean sendStatus = messageService.sendMessage(order.getPhoneNo(), "【知了企服】尊敬的用户，"+bo.getCompanyName()+"于"+DateUtils.getDate(order.getCreateTime(), "yyyy年MM月dd日")
+										/*boolean sendStatus = messageService.sendMessage(order.getPhoneNo(), "【知了企服】尊敬的用户，"+bo.getCompanyName()+"于"+DateUtils.getDate(order.getCreateTime(), "yyyy年MM月dd日")
 										+ "为您"+NumberUtils.hiddingMobileNo(order.getPhoneNo())+"的知了企服余额充值"+NumberUtils.RMBCentToYuan(order.getAmount())+"元，请进入知了企服微信公众号\"我的\"-“个人中心”查看，"
-										+ "如有疑问请致电客服021-64189869");
+										+ "如有疑问请致电客服021-64189869");*/
+										String templateCode = RedisDictProperties.getInstance().getdictValueByCode("ALIYUN_MSM_TEMPLATE_CODE_RECHARGE");
+										String templateParam = "{\"company\":\"知了企服\", \"amount\":\"" + NumberUtils.RMBCentToYuan(order.getAmount()) + "\"}";
+										boolean sendStatus = messageService.sendMessage(order.getPhoneNo(), templateCode, templateParam);
 										if (sendStatus) {
 											
 										} else {

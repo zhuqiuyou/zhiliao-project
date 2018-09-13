@@ -145,6 +145,27 @@ public class BaseConstants {
 	//手机充值退款加密key
 //	public static final String PHONE_RECHARGE_REQ_KEY = "PHONE_RECHARGE_REQ_KEY";
 	public static final String PHONE_RECHARGE_REFUND = "TRANS_ORDER_REFUND";
+	
+	/** 阿里云短信模板code-注册 */
+	public static final String ALIYUN_MSM_TEMPLATE_CODE_REGISTER = "ALIYUN_MSM_TEMPLATE_CODE_REGISTER";
+	/** 阿里云短信模板code-密码重置 */
+	public static final String ALIYUN_MSM_TEMPLATE_CODE_PWDRESET = "ALIYUN_MSM_TEMPLATE_CODE_PWDRESET";
+	/** 阿里云短信模板code-卡券转让 */
+	public static final String ALIYUN_MSM_TEMPLATE_CODE_CARDRESELL = "ALIYUN_MSM_TEMPLATE_CODE_CARDRESELL";
+	/** 阿里云短信模板code-银行卡添加 */
+	public static final String ALIYUN_MSM_TEMPLATE_CODE_ADDBANKCARD = "ALIYUN_MSM_TEMPLATE_CODE_ADDBANKCARD";
+	/** 阿里云短信模板code-充值 */
+	public static final String ALIYUN_MSM_TEMPLATE_CODE_RECHARGE = "ALIYUN_MSM_TEMPLATE_CODE_RECHARGE";
+	/** 阿里云短信模板参数productt */
+	public static final String ALIYUN_MSM_PRODUCT = "ALIYUN_MSM_PRODUCT";
+	/** 阿里云短信模板参数domain */
+	public static final String ALIYUN_MSM_DOMAIN = "ALIYUN_MSM_DOMAIN";
+	/** 阿里云短信模板参数accesskeyId */
+	public static final String ALIYUN_MSM_ACCESSKEYID = "ALIYUN_MSM_ACCESSKEYID";
+	/** 阿里云短信模板参数accesskeySecret */
+	public static final String ALIYUN_MSM_ACCESSKEYSECRET = "ALIYUN_MSM_ACCESSKEYSECRET";
+	/** 阿里云短信模板参数signName */
+	public static final String ALIYUN_MSM_SIGNNAME = "ALIYUN_MSM_SIGNNAME";
 
 	/**
 	 * 电商商城渠道号
@@ -2750,4 +2771,35 @@ public class BaseConstants {
 			return null;
 		}
 	}
+	
+	/*public enum MSMTypeEnum{
+		MSMTypeEnum1("1", "短信通知"), 
+		MSMTypeEnum2("2", "验证码");
+
+		private String code;
+		private String value;
+
+		MSMTypeEnum(String code, String value) {
+			this.code = code;
+			this.value = value;
+		}
+
+		public String getCode() {
+			return code;
+		}
+
+		public String getValue() {
+			return value;
+		}
+
+		public static MSMTypeEnum findByCode(String code) {
+			for (MSMTypeEnum t : MSMTypeEnum.values()) {
+				if (t.code.equalsIgnoreCase(code)) {
+					return t;
+				}
+			}
+			return null;
+		}
+	}*/
+	
 }
