@@ -163,7 +163,7 @@ public class CustomerManagerServiceImpl implements CustomerManagerService {
 						// 通知用户注册成功
 						try {
 //							List<MsgNews> newsList = msgNewsDao.getMsgNewsByUserReg(); // 首次关注欢迎语 图文消息
-							JSONObject jsonStr = WxApiClient.sendCustomTextMessage(openid, "注冊成功",
+							JSONObject jsonStr = WxApiClient.sendCustomTextMessage(openid, "注册成功",
 									WxMemoryCacheClient.getSingleMpAccount());
 							logger.info("用户[{}]注册成功发送图文消息{}", phoneNumber, jsonStr.toString());
 						} catch (Exception ex) {

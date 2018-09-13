@@ -22,7 +22,6 @@ public class AccessTokenBizJob {
 	 * @throws Exception
 	 */
 	public void doRefreshAccessToken() throws Exception {
-//		logger.info("定时任务doRefreshAccessToken执行开始，时间[{}]", DateUtil.getCurrentDateTimeStr());
 		List<MpAccount> accountList = null;
 		try {
 			accountList = WxApiClient.getAllMpAccountList();
@@ -30,6 +29,7 @@ public class AccessTokenBizJob {
 				MpAccount mpAccount = null;
 				for (int i = 0; i < accountList.size(); i++) {
 					mpAccount = accountList.get(i);
+					logger.info("refresh {} token", mpAccount.toString());
 					WxApiClient.doRefreshAccessToken(mpAccount); // 刷新公众号的accesstoken
 				}
 			}

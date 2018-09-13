@@ -175,7 +175,10 @@ public class BizUtil {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(verifySignature("{\"failAmount\":0,\"failNum\":0,\"totalNum\":1,\"dataSource\":\"00\",\"transferOrders\":[{\"bankCity\":\"上海市\",\"bankName\":\"上海浦东发展银行\",\"payTime\":\"20180612122719\",\"bankProvince\":\"上海市\",\"receiverCardNo\":\"6217920203718403\",\"bankCode\":\"SPDB\",\"id\":1806120000001186348,\"amount\":20,\"serialNo\":\"Z605647208\",\"poundage\":50,\"refundTicket\":\"N\",\"receiverName\":\"刘祥龙\",\"receiverType\":\"PERSON\",\"success\":\"true\"}],\"batchNo\":\"HQ8711002021\",\"poundage\":50,\"status\":\"07\",\"successNum\":1,\"totalAmount\":20,\"merchantName\":\"上海衡翮企业服务有限公司\",\"merchantNo\":\"70220031\",\"successAmount\":20}", "CWA5sbnuLz0tRQs2fY-K5_OX2dhFHx-QUYnf4rjnmGweq7gXLivo5IP0rCkW105IrN0Xg_jp-a408nUOFD0gi9kDAcQA09w2XsS-lIjJeu8zThFfMAQVd6-24ugDHmvQi-Q4yhNT-g1Us89bV7bdoZ5x8zhLWZTXaoH15qn9QW4"));
+		String content = "{\"failAmount\":0,\"failNum\":0,\"totalNum\":1,\"dataSource\":\"00\",\"transferOrders\":[{\"bankCity\":\"上海市\",\"bankName\":\"上海浦东发展银行\",\"payTime\":\"20180913185531\",\"bankProvince\":\"上海市\",\"receiverCardNo\":\"6217920203718403\",\"bankCode\":\"SPDB\",\"id\":1809130000003175879,\"amount\":48,\"serialNo\":\"Z52971123\",\"poundage\":50,\"refundTicket\":\"N\",\"receiverName\":\"刘祥龙\",\"receiverType\":\"PERSON\",\"success\":\"true\"}],\"batchNo\":\"HQ1250258819\",\"poundage\":50,\"status\":\"07\",\"successNum\":1,\"totalAmount\":48,\"merchantName\":\"上海昀坤企业服务有限公司\",\"merchantNo\":\"70235957\",\"successAmount\":48}";
+		String sign = "FOUvAirM2U1F1Z2lRKcnoVI1b9atO23knFny7xhmXi5guBZXz8k2VoH1UucJTqbPvQz0ezfcLOoRvL22Nn_we7e4VAkuPi_AJMxRVLY0FggUKYs7IyqPx4p7QtGxfKy2MsO7ks75e3UWo1cLhxVsQJG6KKWaypdPGNV7w1BCbbk";
+		System.out.println(verifySignature(content, sign));
+		String a = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCbFR1mQQxAnXtzEZIp/Lo4RVzU2c/FGCc7QoRHqBQTAxRXtn+n94ldgQBauDNm+nMu5UtsS0r+hXfaeTdJrhJ7pMZUy90kjLdvmzJ5EbjoQGoJdCzmthWBNvRD+m2tAAxYbDb0mcCpvor93RIkbkcphZudCvkG8+/xAfNmJdyZQIDAQAB";
 	}
 
 }
