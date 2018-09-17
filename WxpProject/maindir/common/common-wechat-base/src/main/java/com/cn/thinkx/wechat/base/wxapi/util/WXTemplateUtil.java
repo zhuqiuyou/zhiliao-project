@@ -14,7 +14,7 @@ public class WXTemplateUtil {
 		params.put("keyword2", TemplateMessage.item(mchntName + " - " + channelName, "#000000"));
 		params.put("keyword3", TemplateMessage.item(payAmt + " 元", "#228B22"));
 		params.put("keyword4", TemplateMessage.item(accBal + " 元\n\n", "#228B22"));
-		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电021-64189869", "#FF0000"));
+		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电17058435791", "#FF0000"));
 		return params;
 	}
 
@@ -26,7 +26,7 @@ public class WXTemplateUtil {
 		params.put("keyword2", TemplateMessage.item(mchntName + " - " + channelName, "#000000"));
 		params.put("keyword3", TemplateMessage.item(payAmt + " 元", "#228B22"));
 		params.put("keyword4", TemplateMessage.item(accBal + " 元\n\n", "#228B22"));
-		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电021-64189869", "#FF0000"));
+		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电17058435791", "#FF0000"));
 		return params;
 	}
 
@@ -37,7 +37,7 @@ public class WXTemplateUtil {
 		params.put("keyword1", TemplateMessage.item(txnDate, "#000000"));
 		params.put("keyword2", TemplateMessage.item(mchntName + " - " + shopName, "#000000"));
 		params.put("keyword3", TemplateMessage.item(payAmt + " 元\n\n", "#228B22"));
-		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电021-64189869", "#FF0000"));
+		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电17058435791", "#FF0000"));
 		return params;
 	}
 
@@ -46,7 +46,7 @@ public class WXTemplateUtil {
 		params.put("first", TemplateMessage.item("微信支付已撤销\n", "#000000"));
 		params.put("keynote1", TemplateMessage.item(txnDate, "#000000"));
 		params.put("keynote2", TemplateMessage.item(payAmt + " 元\n\n", "#228B22"));
-		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电021-64189869", "#FF0000"));
+		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电17058435791", "#FF0000"));
 		return params;
 	}
 
@@ -59,7 +59,7 @@ public class WXTemplateUtil {
 		params.put("keyword3", TemplateMessage.item(accBal+ " 元", "#228B22"));
 		params.put("keyword4", TemplateMessage.item(channelName, "#000000"));
 		params.put("keyword5", TemplateMessage.item(txnDate + "\n\n","#000000"));
-		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电021-64189869", "#FF0000"));
+		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电17058435791", "#FF0000"));
 		return params;
 	}
 
@@ -71,7 +71,7 @@ public class WXTemplateUtil {
 		params.put("keyword2", TemplateMessage.item(mchntName + " - " + channelName, "#000000"));
 		params.put("keyword3", TemplateMessage.item(payAmt + " 元", "#228B22"));
 		params.put("keyword4", TemplateMessage.item(txnDate + "\n\n", "#000000"));
-		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电021-64189869", "#FF0000"));
+		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电17058435791", "#FF0000"));
 		return params;
 	}
 	
@@ -83,7 +83,7 @@ public class WXTemplateUtil {
 		params.put("keyword1", TemplateMessage.item(payAmt + " 元", "#FF0000"));
 		params.put("keyword2", TemplateMessage.item(txnDate, "#000000"));
 		params.put("keyword3", TemplateMessage.item(data.toString() + "\n\n", "#000000"));
-		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电021-64189869", "#FF0000"));
+		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电17058435791", "#FF0000"));
 		return params;
 	}
 	
@@ -95,7 +95,7 @@ public class WXTemplateUtil {
 		params.put("keyword3", TemplateMessage.item(payType, "#000000"));
 		params.put("keyword4", TemplateMessage.item(interfacePrimaryKey, "#000000"));
 		params.put("keyword5", TemplateMessage.item(txnDate+ "\n\n", "#000000"));
-		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电021-64189869", "#FF0000"));
+		params.put("remark", TemplateMessage.item("感谢您的使用，如有疑问请致电17058435791", "#FF0000"));
 		return params;
 	}
 

@@ -3,7 +3,7 @@
 <configuration>
 		<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
-		<setting name="logImpl" value="SLF4J" />
+		<!-- <setting name="logImpl" value="SLF4J" /> -->
 	</settings>
 	 <typeAliases>
 	 	<typeAlias type="com.cn.thinkx.oms.module.sys.model.User" alias="User" />
