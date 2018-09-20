@@ -84,7 +84,7 @@ public class WelfareMartController extends BaseController {
 	@Qualifier("withdrawBlacklistInfService")
 	private WithdrawBlacklistInfService withdrawBlacklistInfService;
 	
-	private final int resellFee = 4;
+	private final int resellFee = Integer.parseInt(BaseConstants.RESELL_FEE.toString());
 	
 	/**
 	 * 用户是否有进入卡券集市操作的权限

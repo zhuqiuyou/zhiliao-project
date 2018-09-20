@@ -89,8 +89,6 @@ public class WithdrawOrderServiceImpl implements WithdrawOrderService {
 	@Qualifier("jedisCluster")
 	private JedisCluster jedisCluster;
 	
-	private final String transFee = "4";
-	
 	@Override
 	public String getPrimaryKey() {
 		Map<String, String> paramMap = new HashMap<String, String>();
@@ -361,7 +359,7 @@ public class WithdrawOrderServiceImpl implements WithdrawOrderService {
 				return resp;
 			}
 			
-			int totalFee = new Double(Double.parseDouble(resellNum) * Double.parseDouble(ckp.getAmount()) * Double.parseDouble(transFee) / 100).intValue();
+			int totalFee = new Double(Double.parseDouble(resellNum) * Double.parseDouble(ckp.getAmount()) * Double.parseDouble(BaseConstants.RESELL_FEE.toString()) / 100).intValue();
 			int totalResellAmount = new Double(Double.parseDouble(resellNum) * Double.parseDouble(ckp.getAmount())).intValue();
 			int gainAmount = totalResellAmount - totalFee;
 			
@@ -414,7 +412,7 @@ public class WithdrawOrderServiceImpl implements WithdrawOrderService {
 				ckt.setProductCode(cko.getProductCode());
 				ckt.setTransAmt(ckp.getAmount());
 				ckt.setOrgTransAmt(ckp.getAmount());
-				ckt.setTransFee(String.valueOf(transFee));
+				ckt.setTransFee(String.valueOf(BaseConstants.RESELL_FEE.toString()));
 				ckt.setTransFeeType(TransFeeType.findByCode(ckp.getProductType()).getCode());
 				cktList.add(ckt);
 			}

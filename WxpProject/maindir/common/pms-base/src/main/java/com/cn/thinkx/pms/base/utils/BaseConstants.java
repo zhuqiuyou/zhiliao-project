@@ -166,6 +166,9 @@ public class BaseConstants {
 	public static final String ALIYUN_MSM_ACCESSKEYSECRET = "ALIYUN_MSM_ACCESSKEYSECRET";
 	/** 阿里云短信模板参数signName */
 	public static final String ALIYUN_MSM_SIGNNAME = "ALIYUN_MSM_SIGNNAME";
+	
+	/** 转让费率 */
+	public static final String RESELL_FEE = "1";
 
 	/**
 	 * 电商商城渠道号
@@ -440,8 +443,7 @@ public class BaseConstants {
 	
 	public enum OMSOrderBizType{
 		orderRechargeType10("10","返利"),
-		orderRechargeType11("11","福利充值(航棠)"),
-		orderRechargeType13("13","福利充值(衡翮)"),
+		orderRechargeType13("13","福利充值"),
 		orderRechargeType12("12","账户更改"),
 		orderRechargeType90("90","电商退款"),
 		orderRechargeType91("91","手机充值退款");
