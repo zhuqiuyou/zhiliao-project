@@ -54,7 +54,7 @@ public class SMSMessageController extends BaseController {
 				
 				if(pageList !=null && pageList.size()>0){
 					for(int i=0;i<pageList.size();i++){
-						boolean flag=messageService.sendMessage(pageList.get(i).getPhone(), pageList.get(i).getContent());
+						boolean flag=messageService.sendMessage(pageList.get(i).getPhone(), pageList.get(i).getContent(), "");
 						pageList.get(i).setFlag(flag);
 					}
 				}
